@@ -8,6 +8,7 @@
 		"baseUrl": ".",
 		"jsx": "react-jsx",
 		"resolveJsonModule": true,
+		"types": ["node", "react", "react-dom"],
 		"allowSyntheticDefaultImports": true,
 		"moduleResolution": "node",
 		"forceConsistentCasingInFileNames": true,
@@ -19,8 +20,7 @@
 		"strict": true,
 		"paths": {
 			"@/*": ["./src/*"],
-			"@@/*": ["./src/.umi/*"],
-			"react": ["./node_modules/@types/react"]
+			"@@/*": ["./src/.umi/*"]
 		}
 	},
 	"include": [

@@ -43,6 +43,11 @@ export default [
 		component: './OanTuTi',
 		
 	},
+	{
+		path: '/question-bank',
+		name: 'Bai2',
+		component: './QuestionBank',
+	},
 
 	///////////////////////////////////
 	

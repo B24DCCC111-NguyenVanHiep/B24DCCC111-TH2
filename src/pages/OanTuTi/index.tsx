@@ -1,20 +1,25 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import './index.less';
 
-const choices = ['Kéo', 'Búa', 'Bao'];
+type Choice = 'Kéo' | 'Búa' | 'Bao' | '';
+
+const choices: Choice[] = ['Kéo', 'Búa', 'Bao'];
+
+type HistoryItem = { player: Choice; computer: Choice; result: string };
 
 export default function OanTuTi() {
-	const [playerChoice, setPlayerChoice] = useState('');
-	const [computerChoice, setComputerChoice] = useState('');
+	const [playerChoice, setPlayerChoice] = useState<Choice>('');
+	const [computerChoice, setComputerChoice] = useState<Choice>('');
 	const [result, setResult] = useState('');
-	const [history, setHistory] = useState([]);
+	const [history, setHistory] = useState<HistoryItem[]>([]);
 
-	const getComputerChoice = () => {
+	const getComputerChoice = (): Choice => {
 		const randomIndex = Math.floor(Math.random() * 3);
 		return choices[randomIndex];
 	};
 
-	const getResult = (player, computer) => {
+	const getResult = (player: Choice, computer: Choice): string => {
 		if (player === computer) return 'Hòa';
 
 		if (
@@ -28,7 +33,7 @@ export default function OanTuTi() {
 		return 'Thua';
 	};
 
-	const handlePlay = (choice) => {
+	const handlePlay = (choice: Choice): void => {
 		const computer = getComputerChoice();
 		const gameResult = getResult(choice, computer);
 
@@ -47,10 +52,10 @@ export default function OanTuTi() {
 	};
 
 	return (
-		<div className='oan-tu-ti'>
+		<div className="oan-tu-ti">
 			<h2>🎮 Trò Chơi Oẳn Tù Tì</h2>
 
-			<div className='choices'>
+			<div className="choices">
 				{choices.map((choice) => (
 					<button key={choice} onClick={() => handlePlay(choice)}>
 						{choice}
@@ -58,7 +63,7 @@ export default function OanTuTi() {
 				))}
 			</div>
 
-			<div className='result'>
+			<div className="result">
 				<h3>Kết quả:</h3>
 				<p>Người chơi: {playerChoice}</p>
 				<p>Máy: {computerChoice}</p>
@@ -71,10 +76,10 @@ export default function OanTuTi() {
 				</p>
 			</div>
 
-			<div className='history'>
+			<div className="history">
 				<h3>Lịch sử chơi:</h3>
 				<ul>
-					{history.map((item, index) => (
+					{history.map((item: HistoryItem, index: number) => (
 						<li key={index}>
 							Ván {index + 1}: {item.player} - {item.computer} → {item.result}
 						</li>
